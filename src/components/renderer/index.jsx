@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEqual } from 'lodash';
 
 import * as vega from 'vega';
 import vegaEmbed from 'vega-embed';
 
-import { isEqualPadding, isEqualData } from '../../utils';
+import {
+  isDefined,
+  isEqualPadding,
+  isEqualData,
+  isEqualSpec,
+} from '../../utils';
 
 const propTypes = {
   className: PropTypes.string,
@@ -96,7 +100,7 @@ class Renderer extends React.PureComponent {
   }
 
   updateView(spec, prevProps) {
-    if (!isEqual(spec, prevProps.spec)) {
+    if (!isEqualSpec(spec, prevProps.spec)) {
       this.clearView();
       this.createView(spec);
     } else if (this.view) {
@@ -106,8 +110,13 @@ class Renderer extends React.PureComponent {
       ['width', 'height', 'renderer']
         .filter(field => props[field] !== prevProps[field])
         .forEach(field => {
-          this.view[field](props[field]);
-          changed = true;
+          if (isDefined(props[field])) {
+            this.view[field](props[field]);
+            changed = true;
+          } else {
+            this.view[field](spec[field]);
+            changed = true;
+          }
         });
 
       if (!isEqualPadding(props.padding, prevProps.padding)) {

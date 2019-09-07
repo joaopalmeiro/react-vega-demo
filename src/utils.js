@@ -39,7 +39,7 @@ export const isEqualData = (a, b) => {
     return isEqual(a, b);
   }
 
-  return false;
+  return a === b;
 };
 
 export const isEqualSpec = (a, b) => {
@@ -47,5 +47,9 @@ export const isEqualSpec = (a, b) => {
     return isEqual(a, b);
   }
 
-  return false;
+  return a === b;
+};
+
+export const generateKey = pre => {
+  return `${pre}_${new Date().getTime()}`;
 };

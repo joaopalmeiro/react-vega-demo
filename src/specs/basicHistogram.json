@@ -3,6 +3,10 @@
   "width": 400,
   "height": 200,
   "padding": 5,
+  "autosize": {
+    "type": "pad",
+    "resize": false
+  },
 
   "data": [
     {
@@ -37,7 +41,7 @@
       "type": "band",
       "domain": { "data": "table", "field": "category" },
       "range": "width",
-      "padding": 0.05,
+      "padding": 0,
       "round": true
     },
     {
@@ -49,7 +53,12 @@
   ],
 
   "axes": [
-    { "orient": "bottom", "scale": "xscale" },
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "tickExtra": true,
+      "bandPosition": 1
+    },
     { "orient": "left", "scale": "yscale" }
   ],
 
@@ -58,14 +67,12 @@
       "type": "rect",
       "from": { "data": "table" },
       "encode": {
-        "enter": {
-          "x": { "scale": "xscale", "field": "category" },
-          "width": { "scale": "xscale", "band": 1 },
-          "y": { "scale": "yscale", "field": "amount" },
-          "y2": { "scale": "yscale", "value": 0 }
-        },
         "update": {
-          "fill": { "value": "steelblue" }
+          "fill": { "value": "steelblue" },
+          "y": { "scale": "yscale", "field": "amount" },
+          "y2": { "scale": "yscale", "value": 0 },
+          "x": { "scale": "xscale", "field": "category" },
+          "width": { "scale": "xscale", "band": 1 }
         },
         "hover": {
           "fill": { "value": "red" }
