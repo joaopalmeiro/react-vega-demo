@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
+import Renderer from './components/renderer';
+import basicHistogram from './specs/basicHistogram.json';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class App extends Component {
   }
 
   render() {
-    return <div>Hello!</div>;
+    return <Renderer spec={basicHistogram} />;
   }
 }
 

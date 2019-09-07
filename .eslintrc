@@ -48,6 +48,14 @@
     "react/jsx-curly-spacing": ["warn", "never"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".jsx"] }],
     "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/forbid-prop-types": [
+      "error",
+      {
+        "forbid": ["any"],
+        "checkContextTypes": false,
+        "checkChildContextTypes": false
+      }
+    ],
     "react/jsx-handler-names": [
       "warn",
       {
