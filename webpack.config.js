@@ -1,11 +1,23 @@
-const webpackMerge = require('webpack-merge');
-const common = require('./webpack/webpack.common');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const envs = {
-  development: 'dev',
-  production: 'prod',
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src/index.html")
+    })
+  ],
+  devServer: {
+    hot: true,
+    open: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      }
+    ]
+  }
 };
-/* eslint-disable global-require,import/no-dynamic-require */
-const env = envs[process.env.NODE_ENV || 'development'];
-const envConfig = require(`./webpack/webpack.${env}.js`);
-module.exports = webpackMerge(common, envConfig);

@@ -1,15 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import * as vega from 'vega';
-import vegaEmbed from 'vega-embed';
+import * as vega from "vega";
+import vegaEmbed from "vega-embed";
 
-import {
-  isDefined,
-  isEqualPadding,
-  isEqualData,
-  isEqualSpec,
-} from '../../utils';
+import { isDefined, isEqualPadding, isEqualData, isEqualSpec } from "../utils";
 
 const propTypes = {
   className: PropTypes.string,
@@ -20,21 +15,21 @@ const propTypes = {
     top: PropTypes.number,
     left: PropTypes.number,
     right: PropTypes.number,
-    bottom: PropTypes.number,
+    bottom: PropTypes.number
   }),
-  renderer: PropTypes.oneOf(['svg', 'canvas']),
+  renderer: PropTypes.oneOf(["svg", "canvas"]),
   spec: PropTypes.object.isRequired,
-  width: PropTypes.number,
+  width: PropTypes.number
 };
 
 const defaultProps = {
-  className: '',
+  className: "",
   data: [],
   enableHover: true,
   height: undefined,
   padding: undefined,
-  renderer: 'svg',
-  width: undefined,
+  renderer: "svg",
+  width: undefined
 };
 
 class Renderer extends React.PureComponent {
@@ -63,7 +58,7 @@ class Renderer extends React.PureComponent {
         vega
           .changeset()
           .remove(() => true)
-          .insert(value),
+          .insert(value)
       );
     }
   }
@@ -75,14 +70,14 @@ class Renderer extends React.PureComponent {
         const { view } = await vegaEmbed(
           this.rendererRef.current,
           spec,
-          this.setEmbeddingOptions(),
+          this.setEmbeddingOptions()
         );
 
         this.view = view;
 
         if (spec.data && props.data.length) {
           spec.data
-            .filter(d => d.name === 'table')
+            .filter(d => d.name === "table")
             .forEach(d => {
               this.updateData(d.name, props.data);
             });
@@ -107,7 +102,7 @@ class Renderer extends React.PureComponent {
       const { props } = this;
       let changed = false;
 
-      ['width', 'height', 'renderer']
+      ["width", "height", "renderer"]
         .filter(field => props[field] !== prevProps[field])
         .forEach(field => {
           if (isDefined(props[field])) {
@@ -126,7 +121,7 @@ class Renderer extends React.PureComponent {
 
       if (spec.data) {
         spec.data
-          .filter(d => d.name === 'table')
+          .filter(d => d.name === "table")
           .forEach(d => {
             const oldData = prevProps.data;
             const newData = props.data;
@@ -167,19 +162,19 @@ class Renderer extends React.PureComponent {
 
     return {
       hover: props.enableHover,
-      downloadFileName: 'Basic Data Visualization with React and Vega',
+      downloadFileName: "Basic chart with React and Vega",
       renderer: props.renderer,
       actions: {
         export: true,
         source: true,
         compiled: true,
-        editor: true,
+        editor: true
       },
       i18n: {
-        SOURCE_ACTION: 'View Vega Spec',
+        SOURCE_ACTION: "View Vega Spec"
       },
       ...(props.width && { width: props.width }),
-      ...(props.height && { height: props.height }),
+      ...(props.height && { height: props.height })
     };
   }
 
