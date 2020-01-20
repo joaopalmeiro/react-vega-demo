@@ -8,6 +8,7 @@
     "build": "webpack --mode=production"
   },
   "repository": "https://github.com/joaopalmeiro/react-vega-demo",
+  "homepage": "https://joaopalmeiro.github.io/react-vega-demo",
   "author": "joaopalmeiro",
   "license": "MIT",
   "private": false,
