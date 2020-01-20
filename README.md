@@ -1,12 +1,12 @@
-# simple-react-boilerplate
+# react-vega-demo
 
-A simple React boilerplate to kickoff new projects.
+A simple demo of React with an encapsulated Vega visualization.
 
 ## Quick start
 
 ```
-$ git clone https://github.com/joaopalmeiro/simple-react-boilerplate.git
-$ cd simple-react-boilerplate
+$ git clone https://github.com/joaopalmeiro/react-vega-demo.git
+$ cd react-vega-demo
 $ npm install
 $ npm start
 ```

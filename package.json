@@ -1,13 +1,13 @@
 {
-  "name": "simple-react-boilerplate",
+  "name": "react-vega-demo",
   "version": "1.0.0",
-  "description": "A simple React boilerplate to kickoff new projects.",
+  "description": "A simple demo of React with an encapsulated Vega visualization.",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production"
   },
-  "repository": "https://github.com/joaopalmeiro/simple-react-boilerplate",
+  "repository": "https://github.com/joaopalmeiro/react-vega-demo",
   "author": "joaopalmeiro",
   "license": "MIT",
   "private": false,
